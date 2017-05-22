@@ -132,6 +132,7 @@ public class CustomerController {
 //        }
 //    }
     public ModelAndView edit(HttpServletRequest request, HttpServletResponse response, Customer model) throws Exception {
+        System.out.print("Change.");
         ModelAndView view = new ModelAndView();
         try {
             if (null == model || null == model.getId() || model.getId() <= 0) {
