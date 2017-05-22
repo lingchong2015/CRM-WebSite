@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zn.web.dao.ProductConfigurationDao" >
+  <resultMap id="BaseResultMap" type="com.zn.web.model.ProductConfiguration" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="addition1" property="addition1" jdbcType="VARCHAR" />
+    <result column="addition2" property="addition2" jdbcType="INTEGER" />
+    <result column="addition3" property="addition3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, content, addition1, addition2, addition3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from productconfiguration
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!-- 分页 -->
+  <select id="selectProductConfiguration" resultMap="BaseResultMap"
+          parameterType="com.zn.web.model.ProductConfiguration" flushCache="true">
+  select
+  <include refid="Base_Column_List" />
+  from productconfiguration a
+  <where>
+    <if test="id!=null">
+      and a.id = #{id}
+    </if>
+    <if test="type!=null">
+      and a.type = #{type}
+    </if>
+    <if test="content!=null and content!=''">
+      and a.content like CONCAT('%',#{content},'%')
+    </if>
+    <if test="addition1!=null and addition1!=''">
+      and a.addition1 like CONCAT('%',#{addition1},'%')
+    </if>
+    <if test="addition2!=null">
+      and a.addition2 &lt;=${addition2}
+    </if>
+    <if test="addition3!=null">
+      and a.addition3 &gt;=${addition3}
+    </if>
+  </where>
+  <if test="map!=null">
+    <if test="map.orderBy!=null">
+      ${map.orderBy}
+    </if>
+  </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from productconfiguration
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zn.web.model.ProductConfiguration" >
+    <selectKey keyProperty="id" resultType="java.lang.Integer"
+               order="AFTER">
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into productconfiguration (id, type, content, 
+      addition1, addition2, addition3
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{addition1,jdbcType=VARCHAR}, #{addition2,jdbcType=INTEGER}, #{addition3,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zn.web.model.ProductConfiguration" >
+    insert into productconfiguration
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="addition1 != null" >
+        addition1,
+      </if>
+      <if test="addition2 != null" >
+        addition2,
+      </if>
+      <if test="addition3 != null" >
+        addition3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zn.web.model.ProductConfiguration" >
+    update productconfiguration
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        addition1 = #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        addition2 = #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        addition3 = #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zn.web.model.ProductConfiguration" >
+    update productconfiguration
+    set type = #{type,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      addition1 = #{addition1,jdbcType=VARCHAR},
+      addition2 = #{addition2,jdbcType=INTEGER},
+      addition3 = #{addition3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

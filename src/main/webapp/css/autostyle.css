@@ -1,0 +1,53 @@
+/*form表单样式*/
+input[type="text"],input[type="password"],input[type="text"].ipttext,input[type="password"].ipttext{
+    border: 1px solid #d7d7d7;
+    border-radius: 3PX;
+    padding: 7px 0 7px 5px;
+    line-height: 14PX;
+    font-size: 12px;
+    display: inline-block;
+}
+
+input[type="text"].iptfocus {
+    border-radius: 3PX;
+    padding: 7px 0 7px 5px;
+    line-height: 14PX;
+    font-size: 12px;
+    display: inline-block;
+    border:1px solid #06F;
+    box-shadow:inset 0 1px 2px rgba(0,102,255,0.3);
+}
+select,select.ipttext {
+    border: 1px solid #d7d7d7;
+    border-radius: 3PX;
+    padding: 7px 0 7px 5px;
+    line-height: 14PX;
+    font-size: 12px;
+    display: inline-block;
+}
+
+select.iptfocus {
+    border-radius: 3PX;
+    padding: 7px 0 7px 5px;
+    line-height: 14PX;
+    font-size: 12px;
+    display: inline-block;
+    border:1px solid #06F;
+    box-shadow:inset 0 1px 2px rgba(0,102,255,0.3);
+}
+textarea,textarea.ipttext {
+    border: 1px solid #d7d7d7;
+    border-radius: 3PX;
+    padding: 7px 0 7px 5px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+textarea.iptfocus {
+    border-radius: 3PX;
+    padding: 7px 0 7px 5px;
+    font-size: 12px;
+    display: inline-block;
+    border:1px solid #06F;
+    box-shadow:inset 0 1px 2px rgba(0,102,255,0.3);
+}

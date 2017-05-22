@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zn.web.dao.CustomerProductDao" >
+  <resultMap id="BaseResultMap" type="com.zn.web.model.CustomerProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customerSerial" property="customerserial" jdbcType="VARCHAR" />
+    <result column="productSerial" property="productserial" jdbcType="VARCHAR" />
+    <result column="isConfigurationNeed" property="isconfigurationneed" jdbcType="INTEGER" />
+    <result column="customerConfigurationIdList" property="customerconfigurationidlist" jdbcType="VARCHAR" />
+    <result column="addition1" property="addition1" jdbcType="VARCHAR" />
+    <result column="addition2" property="addition2" jdbcType="INTEGER" />
+    <result column="addition3" property="addition3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customerSerial, productSerial, isConfigurationNeed, customerConfigurationIdList, 
+    addition1, addition2, addition3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customerproduct
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!-- 分页 a.xxx对应的是Base_Column_List的column ，#{}对应的是property-->
+  <select id="selectCustomerProduct" resultMap="BaseResultMap"
+          parameterType="com.zn.web.model.CustomerProduct" flushCache="true">
+    select
+    <include refid="Base_Column_List" />
+    from customerproduct a
+    <where>
+      <if test="id!=null">
+        and a.id = #{id}
+      </if>
+      <if test="customerserial!=null and customerserial!=''">
+        and a.customerSerial like CONCAT('%',#{customerserial},'%')
+      </if>
+      <if test="productserial!=null and productserial!=''">
+        and a.productSerial like CONCAT('%',#{productserial},'%')
+      </if>
+      <if test="isconfigurationneed!=null">
+        and a.isConfigurationNeed = #{isconfigurationneed}
+      </if>
+      <if test="customerconfigurationidlist!=null and customerconfigurationidlist!=''">
+        and a.customerConfigurationIdList like CONCAT('%',#{customerconfigurationidlist},'%')
+      </if>
+      <if test="addition1!=null and addition1!=''">
+        and a.addition1 like CONCAT('%',#{addition1},'%')
+      </if>
+      <if test="addition2!=null">
+        and a.addition2 &lt;=${addition2}
+      </if>
+      <if test="addition3!=null">
+        and a.addition3 &gt;=${addition3}
+      </if>
+    </where>
+    <if test="map!=null">
+      <if test="map.orderBy!=null">
+        ${map.orderBy}
+      </if>
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customerproduct
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.zn.web.model.CustomerProduct" >
+    <selectKey keyProperty="id" resultType="java.lang.Integer"
+               order="AFTER">
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into customerproduct (id, customerSerial, productSerial, 
+      isConfigurationNeed, customerConfigurationIdList, 
+      addition1, addition2, addition3
+      )
+    values (#{id,jdbcType=INTEGER}, #{customerserial,jdbcType=VARCHAR}, #{productserial,jdbcType=VARCHAR}, 
+      #{isconfigurationneed,jdbcType=INTEGER}, #{customerconfigurationidlist,jdbcType=VARCHAR}, 
+      #{addition1,jdbcType=VARCHAR}, #{addition2,jdbcType=INTEGER}, #{addition3,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.zn.web.model.CustomerProduct" >
+    insert into customerproduct
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerserial != null" >
+        customerSerial,
+      </if>
+      <if test="productserial != null" >
+        productSerial,
+      </if>
+      <if test="isconfigurationneed != null" >
+        isConfigurationNeed,
+      </if>
+      <if test="customerconfigurationidlist != null" >
+        customerConfigurationIdList,
+      </if>
+      <if test="addition1 != null" >
+        addition1,
+      </if>
+      <if test="addition2 != null" >
+        addition2,
+      </if>
+      <if test="addition3 != null" >
+        addition3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerserial != null" >
+        #{customerserial,jdbcType=VARCHAR},
+      </if>
+      <if test="productserial != null" >
+        #{productserial,jdbcType=VARCHAR},
+      </if>
+      <if test="isconfigurationneed != null" >
+        #{isconfigurationneed,jdbcType=INTEGER},
+      </if>
+      <if test="customerconfigurationidlist != null" >
+        #{customerconfigurationidlist,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zn.web.model.CustomerProduct" >
+    update customerproduct
+    <set >
+      <if test="customerserial != null" >
+        customerSerial = #{customerserial,jdbcType=VARCHAR},
+      </if>
+      <if test="productserial != null" >
+        productSerial = #{productserial,jdbcType=VARCHAR},
+      </if>
+      <if test="isconfigurationneed != null" >
+        isConfigurationNeed = #{isconfigurationneed,jdbcType=INTEGER},
+      </if>
+      <if test="customerconfigurationidlist != null" >
+        customerConfigurationIdList = #{customerconfigurationidlist,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        addition1 = #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        addition2 = #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        addition3 = #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zn.web.model.CustomerProduct" >
+    update customerproduct
+    set customerSerial = #{customerserial,jdbcType=VARCHAR},
+      productSerial = #{productserial,jdbcType=VARCHAR},
+      isConfigurationNeed = #{isconfigurationneed,jdbcType=INTEGER},
+      customerConfigurationIdList = #{customerconfigurationidlist,jdbcType=VARCHAR},
+      addition1 = #{addition1,jdbcType=VARCHAR},
+      addition2 = #{addition2,jdbcType=INTEGER},
+      addition3 = #{addition3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

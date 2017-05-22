@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zn.web.dao.ProductDao" >
+  <resultMap id="BaseResultMap" type="com.zn.web.model.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serial" property="serial" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="specification" property="specification" jdbcType="INTEGER" />
+    <result column="productCommonFaultList" property="productcommonfaultlist" jdbcType="VARCHAR" />
+    <result column="addition1" property="addition1" jdbcType="VARCHAR" />
+    <result column="addition2" property="addition2" jdbcType="INTEGER" />
+    <result column="addition3" property="addition3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serial, name, type, specification, productCommonFaultList, addition1, addition2, 
+    addition3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!-- 分页 -->
+  <select id="selectProduct" resultMap="BaseResultMap"
+          parameterType="com.zn.web.model.Product" flushCache="true">
+    select
+    <include refid="Base_Column_List" />
+    from product a
+    <where>
+      <if test="id!=null">
+        and a.id = #{id}
+      </if>
+      <if test="serial!=null and serial!=''">
+        and a.serial like CONCAT('%',#{serial},'%')
+      </if>
+      <if test="name!=null and name!=''">
+        and a.name like CONCAT('%',#{name},'%')
+      </if>
+      <if test="type!=null and type!=''">
+        and a.address like CONCAT('%',#{address},'%')
+      </if>
+      <if test="specification!=null and specification!=''">
+        and a.location like CONCAT('%',#{location},'%')
+      </if>
+      <if test="productcommonfaultlist!=null and productcommonfaultlist!=''">
+        and a.productCommonFaultList like CONCAT('%',#{productcommonfaultlist},'%')
+      </if>
+      <if test="addition1!=null and addition1!=''">
+        and a.addition1 like CONCAT('%',#{addition1},'%')
+      </if>
+      <if test="addition2!=null">
+        and a.addition2 &lt;=${addition2}
+      </if>
+      <if test="addition3!=null">
+        and a.addition3 &gt;=${addition3}
+      </if>
+    </where>
+    <if test="map!=null">
+      <if test="map.orderBy!=null">
+        ${map.orderBy}
+      </if>
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zn.web.model.Product" >
+    insert into product (id, serial, name, 
+      type, specification, productCommonFaultList, 
+      addition1, addition2, addition3
+      )
+    values (#{id,jdbcType=INTEGER}, #{serial,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{specification,jdbcType=INTEGER}, #{productcommonfaultlist,jdbcType=VARCHAR}, 
+      #{addition1,jdbcType=VARCHAR}, #{addition2,jdbcType=INTEGER}, #{addition3,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zn.web.model.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serial != null" >
+        serial,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="specification != null" >
+        specification,
+      </if>
+      <if test="productcommonfaultlist != null" >
+        productCommonFaultList,
+      </if>
+      <if test="addition1 != null" >
+        addition1,
+      </if>
+      <if test="addition2 != null" >
+        addition2,
+      </if>
+      <if test="addition3 != null" >
+        addition3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serial != null" >
+        #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="specification != null" >
+        #{specification,jdbcType=INTEGER},
+      </if>
+      <if test="productcommonfaultlist != null" >
+        #{productcommonfaultlist,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zn.web.model.Product" >
+    update product
+    <set >
+      <if test="serial != null" >
+        serial = #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="specification != null" >
+        specification = #{specification,jdbcType=INTEGER},
+      </if>
+      <if test="productcommonfaultlist != null" >
+        productCommonFaultList = #{productcommonfaultlist,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        addition1 = #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        addition2 = #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        addition3 = #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zn.web.model.Product" >
+    update product
+    set serial = #{serial,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      specification = #{specification,jdbcType=INTEGER},
+      productCommonFaultList = #{productcommonfaultlist,jdbcType=VARCHAR},
+      addition1 = #{addition1,jdbcType=VARCHAR},
+      addition2 = #{addition2,jdbcType=INTEGER},
+      addition3 = #{addition3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

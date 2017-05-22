@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zn.web.dao.ProductSpecificationDao" >
+  <resultMap id="BaseResultMap" type="com.zn.web.model.ProductSpecification" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="addDatetime" property="adddatetime" jdbcType="TIMESTAMP" />
+    <result column="isDeleted" property="isdeleted" jdbcType="INTEGER" />
+    <result column="deleteDatetime" property="deletedatetime" jdbcType="TIMESTAMP" />
+    <result column="productConfigurationList" property="productconfigurationlist" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="addition1" property="addition1" jdbcType="VARCHAR" />
+    <result column="addition2" property="addition2" jdbcType="INTEGER" />
+    <result column="addition3" property="addition3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, addDatetime, isDeleted, deleteDatetime, productConfigurationList, price, 
+    addition1, addition2, addition3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from productspecification
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!-- 分页 -->
+  <select id="selectProductSpecification" resultMap="BaseResultMap"
+          parameterType="com.zn.web.model.ProductSpecification" flushCache="true">
+    select
+    <include refid="Base_Column_List" />
+    from productspecification a
+    <where>
+      <if test="id!=null">
+        and a.id = #{id}
+      </if>
+      <if test="name!=null and name!=''">
+        and a.name like CONCAT('%',#{name},'%')
+      </if>
+      <if test="adddatetime!=null">
+        and a.addDatetime &gt;=${adddatetime}
+      </if>
+      <if test="isdeleted!=null">
+        and a.isDeleted = #{isdeleted}
+      </if>
+      <if test="deletedatetime!=null">
+        and a.deleteDatetime &gt;=${deletedatetime}
+      </if>
+      <if test="productconfigurationlist!=null and productconfigurationlist!=''">
+        and a.productConfigurationList like CONCAT('%',#{productconfigurationlist},'%')
+      </if>
+      <if test="price!=null">
+        and a.price = #{price}
+      </if>
+      <if test="addition1!=null and addition1!=''">
+        and a.addition1 like CONCAT('%',#{addition1},'%')
+      </if>
+      <if test="addition2!=null">
+        and a.addition2 &lt;=${addition2}
+      </if>
+      <if test="addition3!=null">
+        and a.addition3 &gt;=${addition3}
+      </if>
+    </where>
+    <if test="map!=null">
+      <if test="map.orderBy!=null">
+        ${map.orderBy}
+      </if>
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from productspecification
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zn.web.model.ProductSpecification" >
+    insert into productspecification (id, name, addDatetime, 
+      isDeleted, deleteDatetime, productConfigurationList, 
+      price, addition1, addition2, 
+      addition3)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{adddatetime,jdbcType=TIMESTAMP}, 
+      #{isdeleted,jdbcType=INTEGER}, #{deletedatetime,jdbcType=TIMESTAMP}, #{productconfigurationlist,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{addition1,jdbcType=VARCHAR}, #{addition2,jdbcType=INTEGER}, 
+      #{addition3,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zn.web.model.ProductSpecification" >
+    insert into productspecification
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="adddatetime != null" >
+        addDatetime,
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted,
+      </if>
+      <if test="deletedatetime != null" >
+        deleteDatetime,
+      </if>
+      <if test="productconfigurationlist != null" >
+        productConfigurationList,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="addition1 != null" >
+        addition1,
+      </if>
+      <if test="addition2 != null" >
+        addition2,
+      </if>
+      <if test="addition3 != null" >
+        addition3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="adddatetime != null" >
+        #{adddatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="deletedatetime != null" >
+        #{deletedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productconfigurationlist != null" >
+        #{productconfigurationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="addition1 != null" >
+        #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zn.web.model.ProductSpecification" >
+    update productspecification
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="adddatetime != null" >
+        addDatetime = #{adddatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="deletedatetime != null" >
+        deleteDatetime = #{deletedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productconfigurationlist != null" >
+        productConfigurationList = #{productconfigurationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="addition1 != null" >
+        addition1 = #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        addition2 = #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        addition3 = #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zn.web.model.ProductSpecification" >
+    update productspecification
+    set name = #{name,jdbcType=VARCHAR},
+      addDatetime = #{adddatetime,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=INTEGER},
+      deleteDatetime = #{deletedatetime,jdbcType=TIMESTAMP},
+      productConfigurationList = #{productconfigurationlist,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      addition1 = #{addition1,jdbcType=VARCHAR},
+      addition2 = #{addition2,jdbcType=INTEGER},
+      addition3 = #{addition3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

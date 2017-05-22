@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zn.web.dao.ProductCommonFaultDao" >
+  <resultMap id="BaseResultMap" type="com.zn.web.model.ProductCommonFault" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="commonFault" property="commonfault" jdbcType="VARCHAR" />
+    <result column="faultJudgment" property="faultjudgment" jdbcType="VARCHAR" />
+    <result column="faultFix" property="faultfix" jdbcType="VARCHAR" />
+    <result column="isFixed" property="isfixed" jdbcType="INTEGER" />
+    <result column="addition1" property="addition1" jdbcType="VARCHAR" />
+    <result column="addition2" property="addition2" jdbcType="INTEGER" />
+    <result column="addition3" property="addition3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, commonFault, faultJudgment, faultFix, isFixed, addition1, addition2, addition3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from productcommonfault
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <!-- 分页 -->
+  <select id="selectProductCommonFault" resultMap="BaseResultMap"
+          parameterType="com.zn.web.model.ProductCommonFault" flushCache="true">
+    select
+    <include refid="Base_Column_List" />
+    from productcommonfault a
+    <where>
+      <if test="id!=null">
+        and a.id = #{id}
+      </if>
+      <if test="commonfault!=null and commonfault!=''">
+        and a.commonFault like CONCAT('%',#{commonfault},'%')
+      </if>
+      <if test="faultjudgment!=null and faultjudgment!=''">
+        and a.faultJudgment like CONCAT('%',#{faultjudgment},'%')
+      </if>
+      <if test="faultfix!=null and faultfix!=''">
+        and a.commonFault like CONCAT('%',#{faultfix},'%')
+      </if>
+      <if test="isfixed!=null">
+        and a.isFixed = #{isfixed}
+      </if>
+      <if test="addition1!=null and addition1!=''">
+        and a.addition1 like CONCAT('%',#{addition1},'%')
+      </if>
+      <if test="addition2!=null">
+        and a.addition2 &lt;=${addition2}
+      </if>
+      <if test="addition3!=null">
+        and a.addition3 &gt;=${addition3}
+      </if>
+    </where>
+    <if test="map!=null">
+      <if test="map.orderBy!=null">
+        ${map.orderBy}
+      </if>
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from productcommonfault
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zn.web.model.ProductCommonFault" >
+    <selectKey keyProperty="id" resultType="java.lang.Integer"
+               order="AFTER">
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into productcommonfault (id, commonFault, faultJudgment,
+      faultFix, isFixed, addition1, 
+      addition2, addition3)
+    values (#{id,jdbcType=INTEGER}, #{commonfault,jdbcType=VARCHAR}, #{faultjudgment,jdbcType=VARCHAR}, 
+      #{faultfix,jdbcType=VARCHAR}, #{isfixed,jdbcType=INTEGER}, #{addition1,jdbcType=VARCHAR}, 
+      #{addition2,jdbcType=INTEGER}, #{addition3,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zn.web.model.ProductCommonFault" >
+    insert into productcommonfault
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="commonfault != null" >
+        commonFault,
+      </if>
+      <if test="faultjudgment != null" >
+        faultJudgment,
+      </if>
+      <if test="faultfix != null" >
+        faultFix,
+      </if>
+      <if test="isfixed != null" >
+        isFixed,
+      </if>
+      <if test="addition1 != null" >
+        addition1,
+      </if>
+      <if test="addition2 != null" >
+        addition2,
+      </if>
+      <if test="addition3 != null" >
+        addition3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="commonfault != null" >
+        #{commonfault,jdbcType=VARCHAR},
+      </if>
+      <if test="faultjudgment != null" >
+        #{faultjudgment,jdbcType=VARCHAR},
+      </if>
+      <if test="faultfix != null" >
+        #{faultfix,jdbcType=VARCHAR},
+      </if>
+      <if test="isfixed != null" >
+        #{isfixed,jdbcType=INTEGER},
+      </if>
+      <if test="addition1 != null" >
+        #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zn.web.model.ProductCommonFault" >
+    update productcommonfault
+    <set >
+      <if test="commonfault != null" >
+        commonFault = #{commonfault,jdbcType=VARCHAR},
+      </if>
+      <if test="faultjudgment != null" >
+        faultJudgment = #{faultjudgment,jdbcType=VARCHAR},
+      </if>
+      <if test="faultfix != null" >
+        faultFix = #{faultfix,jdbcType=VARCHAR},
+      </if>
+      <if test="isfixed != null" >
+        isFixed = #{isfixed,jdbcType=INTEGER},
+      </if>
+      <if test="addition1 != null" >
+        addition1 = #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        addition2 = #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        addition3 = #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zn.web.model.ProductCommonFault" >
+    update productcommonfault
+    set commonFault = #{commonfault,jdbcType=VARCHAR},
+      faultJudgment = #{faultjudgment,jdbcType=VARCHAR},
+      faultFix = #{faultfix,jdbcType=VARCHAR},
+      isFixed = #{isfixed,jdbcType=INTEGER},
+      addition1 = #{addition1,jdbcType=VARCHAR},
+      addition2 = #{addition2,jdbcType=INTEGER},
+      addition3 = #{addition3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zn.web.dao.CustomerDao" >
+  <resultMap id="BaseResultMap" type="com.zn.web.model.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serial" property="serial" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="addition1" property="addition1" jdbcType="VARCHAR" />
+    <result column="addition2" property="addition2" jdbcType="INTEGER" />
+    <result column="addition3" property="addition3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serial, phoneNumber, address, location, addition1, addition2, addition3
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAllCustomer" resultMap="BaseResultMap">
+    SELECT * FROM customer
+    <if test="map!=null">
+      <if test="map.orderBy!=null">
+        ${map.orderBy}
+      </if>
+    </if>
+  </select>
+
+  <!-- 分页 -->
+  <select id="selectCustomer" resultMap="BaseResultMap"
+          parameterType="com.zn.web.model.Customer" flushCache="true">
+    select
+    <include refid="Base_Column_List" />
+    from customer a
+    <where>
+      <if test="id!=null">
+        and a.id = #{id}
+      </if>
+      <if test="serial!=null and serial!=''">
+        and a.serial like CONCAT('%',#{serial},'%')
+      </if>
+      <if test="phonenumber!=null and phonenumber!=''">
+        and a.phoneNumber like CONCAT('%',#{phonenumber},'%')
+      </if>
+      <if test="address!=null and address!=''">
+        and a.address like CONCAT('%',#{address},'%')
+      </if>
+      <if test="location!=null and location!=''">
+        and a.location like CONCAT('%',#{location},'%')
+      </if>
+      <if test="addition1!=null and addition1!=''">
+        and a.addition1 like CONCAT('%',#{addition1},'%')
+      </if>
+      <if test="addition2!=null">
+        and a.addition2 &lt;=${addition2}
+      </if>
+      <if test="addition3!=null">
+        and a.addition3 &gt;=${addition3}
+      </if>
+    </where>
+    <if test="map!=null">
+    <if test="map.orderBy!=null">
+      ${map.orderBy}
+    </if>
+  </if>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.zn.web.model.Customer" >
+    <selectKey keyProperty="id" resultType="java.lang.Integer"
+               order="AFTER">
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into customer (id, serial, phoneNumber, 
+      address, location, addition1, 
+      addition2, addition3)
+    values (#{id,jdbcType=INTEGER}, #{serial,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{addition1,jdbcType=VARCHAR}, 
+      #{addition2,jdbcType=INTEGER}, #{addition3,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.zn.web.model.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serial != null" >
+        serial,
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="addition1 != null" >
+        addition1,
+      </if>
+      <if test="addition2 != null" >
+        addition2,
+      </if>
+      <if test="addition3 != null" >
+        addition3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serial != null" >
+        #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zn.web.model.Customer" >
+    update customer
+    <set >
+      <if test="serial != null" >
+        serial = #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="addition1 != null" >
+        addition1 = #{addition1,jdbcType=VARCHAR},
+      </if>
+      <if test="addition2 != null" >
+        addition2 = #{addition2,jdbcType=INTEGER},
+      </if>
+      <if test="addition3 != null" >
+        addition3 = #{addition3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zn.web.model.Customer" >
+    update customer
+    set serial = #{serial,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      addition1 = #{addition1,jdbcType=VARCHAR},
+      addition2 = #{addition2,jdbcType=INTEGER},
+      addition3 = #{addition3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

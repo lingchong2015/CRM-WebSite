@@ -1,0 +1,582 @@
+/*table样式*/
+html {
+    _overflow-y: scroll;
+}
+
+html,body {
+    height: 100%;
+}
+
+/*解决在IE6下使用framset出现横向滚动条*/
+/*主样式*/
+/*body {*/
+    /*margin-left: 5px;*/
+    /*margin-right: 5px;*/
+    /*font-family: "宋体", Arial, Helvetica, sans-serif;*/
+    /*background-color: #ffffff;*/
+    /*background-repeat: repeat;*/
+    /*background-position: left top;*/
+    /*font-family: "宋体", Arial, Helvetica, sans-serif;*/
+/*}*/
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:block;margin:0;padding:0;list-style: none;}
+/*基本标签样式*/
+td{
+font-size: 13px;
+}
+/*td,div,p,font,span,option,label,li {*/
+    /*font-size: 13px;*/
+    /*!*color:#000000;*!*/
+/*}*/
+
+/*基本链接样式*/
+/*a {*/
+    /*color: #000088;*/
+    /*text-decoration: none;*/
+/*}*/
+
+/*a:link {*/
+    /*color: #000088;*/
+    /*text-decoration: none;*/
+/*}*/
+
+/*a:hover {*/
+    /*color: #ff0000;*/
+    /*text-decoration: none;*/
+/*}*/
+
+form {
+    margin: 0px;
+}
+
+.listTable {
+    border-left: #DDDDDD 1px solid;
+    border-collapse: collapse;
+}
+
+.listTable th {
+    border-top: 2px solid #999;
+    background-color:#F7F7F7;
+    padding:0px;
+    border-bottom:#DDDDDD 1px solid;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    empty-cells: show;
+    font-weight: normal;
+}
+
+.listTable td {
+    border-right: #DDDDDD 1px solid;
+    border-bottom: #DDDDDD 1px solid;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    empty-cells: show;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.listTable tr td span {
+    color: #686868
+}
+
+.listTable tr td span.st1 {
+    color: #ff0000
+}
+
+.listTable tr:hover {
+    background: #FFC;
+}
+
+.pagebar {
+    /*border: 1px solid #DDDDDD;*/
+    font-size: 12px;
+    border-top: 0px;
+    height: 30px;
+    line-height:30px;
+    cursor: default;
+}
+
+.curPage {
+    color: red;
+    text-decoration: underline;
+}
+
+.goPage {
+    width: 25px;
+    text-align: center;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.perListSelect {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/*.searchbar {*/
+    /*border: 1px solid #366AB3;*/
+    /*!**background-color: #F6F6F6;**!*/
+    /*margin-bottom: 5px;*/
+/*}*/
+
+.listTableHead {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+    border-right: 1px solid #ddd;
+}
+
+.listTable th a{
+	font-size: 12px;
+    text-decoration: none;
+    /*background: url(images/sort.gif) 7px center no-repeat;*/
+    cursor: pointer;
+    padding-left: 18px;
+}
+
+.listTableHead  a {
+    font-size: 12px;
+    text-decoration: none;
+    /*background: url(images/sort.gif) 7px center no-repeat;*/
+    cursor: pointer;
+    padding-left: 18px;
+}
+
+.listTableHead  a:link {
+    text-decoration: none;
+}
+
+.listTableHead  a:hover {
+    text-decoration: none;
+}
+
+/*.tabPanelSelected,.tabPanel {*/
+    /*float: left;*/
+/*}*/
+
+/*.tabPanelSelected .tabPanelLeft {*/
+    /*background-image: url(images/bg_TabPanelSelected.gif);*/
+    /*background-repeat: no-repeat;*/
+    /*width: 5px;*/
+    /*height: 25px;*/
+    /*float: left;*/
+    /*font-size: 1px;*/
+    /*!*cursor: default;*!*/
+    /*cursor: hand;*/
+/*}*/
+
+/*.tabPanelSelected .tabPanelRight {*/
+    /*background-image: url(images/bg_TabPanelSelected.gif);*/
+    /*background-position: bottom right;*/
+    /*background-repeat: no-repeat;*/
+    /*width: 5px;*/
+    /*height: 25px;*/
+    /*float: left;*/
+    /*!*cursor: default;*!*/
+    /*cursor: hand;*/
+    /*font-size: 1px;*/
+/*}*/
+
+/*.tabPanelSelected .tabPanelCenter {*/
+    /*background-image: url(images/bg_TabPanelSelected.gif);*/
+    /*background-position: center center;*/
+    /*background-repeat: repeat-x;*/
+    /*height: 23px;*/
+    /*padding-top: 2px;*/
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*float: left;*/
+    /*word-break: keep-all;*/
+    /*!*cursor: default;*!*/
+    /*cursor: hand;*/
+/*}*/
+
+/*.tabPanel .tabPanelLeft {*/
+    /*background-image: url(images/bg_TabPanel.gif);*/
+    /*background-repeat: no-repeat;*/
+    /*width: 5px;*/
+    /*height: 25px;*/
+    /*float: left;*/
+    /*font-size: 1px;*/
+    /*!*cursor: default;*!*/
+    /*cursor: hand;*/
+/*}*/
+
+/*.tabPanel .tabPanelRight {*/
+    /*background-image: url(images/bg_TabPanel.gif);*/
+    /*background-position: bottom right;*/
+    /*background-repeat: no-repeat;*/
+    /*width: 5px;*/
+    /*height: 25px;*/
+    /*float: left;*/
+    /*!*cursor: default;*!*/
+    /*cursor: hand;*/
+    /*font-size: 1px;*/
+/*}*/
+
+/*.tabPanel .tabPanelCenter {*/
+    /*background-image: url(images/bg_TabPanel.gif);*/
+    /*background-position: center center;*/
+    /*background-repeat: repeat-x;*/
+    /*height: 23px;*/
+    /*padding-top: 2px;*/
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*float: left;*/
+    /*word-break: keep-all;*/
+    /*!*cursor: default;*!*/
+    /*cursor: hand;*/
+/*}*/
+
+/*.btnBQspace {*/
+    /*width: 2px;*/
+/*}*/
+
+/*!*左对齐*!*/
+/*.AlignLeft {*/
+    /*float: left;*/
+/*}*/
+
+/*!**!*/
+/*.inlineBottomLine {*/
+    /*background-image: url(images/inlineLine.gif);*/
+    /*background-repeat: repeat-x;*/
+    /*background-position: bottom left;*/
+/*}*/
+
+/*.requiredLabel {*/
+    /*color: red;*/
+/*}*/
+
+/*fieldset {*/
+    /*border: 1px solid #366AB3;*/
+    /*margin-bottom: 5px;*/
+/*}*/
+
+/*fieldset legend {*/
+    /*font-size: 12px;*/
+/*}*/
+/*!**蓝色**!*/
+/*.colorblue {*/
+    /*color: #0046D5;*/
+/*}*/
+/*!**灰色**!*/
+/*.colorgray {*/
+    /*color: #AAAAAA;*/
+/*}*/
+
+/*.right {*/
+    /*float: left;*/
+    /*width: 100%;*/
+    /*height: 99%;*/
+/*}*/
+/*!***/
+/*.right .midBg {*/
+    /*background: url(images/pic22.jpg) top repeat-x;*/
+    /*height: 90%;*/
+/*}*/
+/***!*/
+/*.right .midBg {*/
+    /*height: 100%;*/
+/*}*/
+
+/*body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,img,textarea,blockquote,p*/
+/*{*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+/*}*/
+
+/*.toub {*/
+	/*display:none;*/
+    /*height: 29px;*/
+    /*padding-top: 7px;*/
+    /*margin-left: 20px;*/
+    /*margin-right: 25px;*/
+/*}*/
+
+/*.toub span {*/
+    /*float: right;*/
+    /*padding-left: 36px;*/
+/*}*/
+
+/*.scroll {*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;*/
+/*}*/
+
+/*.toptitle{*/
+	/*line-height:40px;*/
+	/*padding-left:20px;*/
+	/*color:#777777;*/
+	/*background-color:#F5F5F5;*/
+	/*box-shadow:1px 1px 2px rgba(0,0,0,0.2);*/
+/*}*/
+
+/*.rightWrap1 {*/
+    /*margin-left: 20px;*/
+    /*margin-right: 20px;*/
+/*}*/
+
+.searchBorder1 {
+    background-color: #f5f5f5;
+    /*border:#DDDDDD 1px solid;*/
+    border-radius: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.inputinf {
+    border: #F29222 1px solid;
+}
+
+/*.buttonSubmit {*/
+    /*width: 60px;*/
+    /*height: 23px;*/
+/*}*/
+
+/*.buttonRet {*/
+    /*border: 0px;*/
+    /*cursor: pointer;*/
+/*}*/
+
+.bgBorder {
+    border: #A8CCFF 0px solid;
+}
+
+/*.bgBorder .title001 {*/
+    /*height: 31px;*/
+/*}*/
+
+/*.bgBorder .title001 p {*/
+    /*height: 31px;*/
+    /*line-height: 31px;*/
+    /*background: url(images/pic10.jpg) left no-repeat;*/
+    /*padding-left: 40px;*/
+    /*color: #0B76D6;*/
+    /*font-weight: bold;*/
+    /*font-size: 14px;*/
+/*}*/
+
+/*.bgBorder .title001 .xxk {*/
+    /*padding-left: 20px;*/
+/*}*/
+
+.tdulinput {
+    height: 25px;
+}
+/* 解决布局百分比问题  */
+/*.tdulinput input,.tdulinput select,.tdulinput textarea{width: 80%;}*/
+
+/*.listTableLine2 {*/
+    /**/
+/*}*/
+
+/*.listTableLine1 {*/
+	/*background-color: #F7F7F7;*/
+/*}*/
+
+/*.listTableLineHover {*/
+    /*background: #FFC;*/
+/*}*/
+
+.nameInput {
+    /*background-color: #F5F5F5;*/
+    text-align: right;
+    padding-right: 5px;
+    color: #333;
+    height: 32px;
+    white-space: nowrap;
+}
+
+.nameInput2 {
+    background-color: #fff;
+    text-align: left;
+    padding-left: 5px;
+    height: 32px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.nameInput3 {
+    background-color: #fff;
+    text-align: left;
+    padding-left: 5px;
+    height: 32px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+/* 解决布局百分比问题  */
+/*.nameInput2 input,.nameInput2 select,.nameInput2 textarea{width: 80%;} */
+
+/*.docBoxNoPanel {*/
+    /*background-color: #DDDDDD;*/
+/*}*/
+
+/*!* 12.12 *!*/
+/*.shuxin1 {*/
+	/*!** 树形背景色*/
+    /*background-color: #F5F5F5;*/
+    /***!*/
+    /*border: #DDDDDD 1px solid;*/
+    /*border-top: 2px solid #999;*/
+    /*width: 182px;*/
+    /*padding: 20px;*/
+/*}*/
+
+/*.shuxin2 {*/
+    /*padding-left: 5px;*/
+/*}*/
+
+/*.bgBorder .title001 .sx1 {*/
+    /*height: 31px;*/
+    /*line-height: 31px;*/
+    /*padding-left: 5px;*/
+    /*color: #0B76D6;*/
+    /*font-weight: bold;*/
+    /*font-size: 14px;*/
+    /*float: left;*/
+/*}*/
+
+/*.bgBorder .title001 .sx2 {*/
+    /*float: right;*/
+    /*padding-right: 0px;*/
+/*}*/
+
+/*.input201 {*/
+    /*height: 21px;*/
+    /*line-height: 21px;*/
+    /*border: #8B8B8B 1px solid;*/
+    /*margin-left: 8px;*/
+/*}*/
+
+/*!* 12.14 *!*/
+/*.jgWrap {*/
+    /*border: #E2E2E2 1px solid;*/
+    /*border-top: #177CD8 3px solid;*/
+    /*background-color: #F6F6F6;*/
+/*}*/
+
+/*.jgTitle {*/
+    /*font-size: 14px;*/
+    /*font-weight: bold;*/
+    /*color: #177CD8;*/
+    /*padding-left: 13px;*/
+    /*padding-top: 40px;*/
+/*}*/
+
+/*.jgTitle span {*/
+    /*float: right;*/
+/*}*/
+
+/*.jgTs {*/
+    /*padding-left: 50px;*/
+    /*height: 40px;*/
+    /*line-height: 42px;*/
+/*}*/
+
+/*.button11 {*/
+    /*width: 109px;*/
+    /*height: 28px;*/
+    /*padding-top: 2px;*/
+    /*cursor: pointer;*/
+    /*color: #fff;*/
+    /*font-size: 14px;*/
+    /*font-weight: bold;*/
+    /*background-image: url(images/jg4.jpg);*/
+    /*padding-left: 17px;*/
+    /*border: 0px solid #f5bf03;*/
+    /*text-align: left;*/
+    /*margin-bottom: 10px;*/
+/*}*/
+
+/*.button22 {*/
+    /*width: 109px;*/
+    /*height: 28px;*/
+    /*padding-top: 2px;*/
+    /*cursor: pointer;*/
+    /*color: #fff;*/
+    /*font-size: 14px;*/
+    /*font-weight: bold;*/
+    /*background-image: url(images/jg5.jpg);*/
+    /*padding-left: 33px;*/
+    /*border: 0px solid #f5bf03;*/
+    /*text-align: left;*/
+    /*margin-bottom: 10px;*/
+/*}*/
+
+/*!* 解决一行两列布局颤抖问题  *!*/
+/*.fix {width: 37%} */
+/*!* 解决查看，编辑页面操作按钮款第百分比  *!*/
+/*.fix2 input{width: auto;}*/
+/*!* 解决select统一宽度  *!*/
+/*.docBoxNoPanel select,#searchForm select{width: 150px;}*/
+/*!*搜索条件标签*!*/
+/*.timecategory {overflow:hidden}*/
+/*.timecategory ul {float:left;margin-top:10px;margin-left:49px;border:1px solid #ABB2BA}*/
+/*.timecategory ul li{border-right:1px solid #ccc;float:left;padding:5px 10px;cursor:pointer}*/
+/*.timecategory ul li:last-child{border-right:0}*/
+/*.timecategory ul li.cur{font-weight:700;background:#ccc;cursor:default}*/
+
+
+
+/**{margin:0;list-style-type:none;}*/
+/*a,img{border:0;}*/
+/*body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}*/
+/*!* select *!*/
+/*!* select *!*/
+/*.select{padding:5px 10px;border:#ddd 1px solid;border-radius:4px;width:60%;margin-bottom:5px;margin-top:5px;font-size:12px}*/
+/*.select li{list-style:none;padding:10px 0 5px 100px}*/
+/*.select .select-list{border-bottom:#eee 1px dashed}*/
+/*.select dl{zoom:1;position:relative;line-height:24px;}*/
+/*.select dl:after{content:" ";display:block;clear:both;height:0;overflow:hidden}*/
+/*.select dt{width:100px;margin-bottom:5px;position:absolute;top:0;left:-100px;text-align:right;color:#3a3d42;height:24px;line-height:24px}*/
+/*.select dd{float:left;display:inline;margin:0 0 5px 5px;}*/
+/*.select a{display:inline-block;white-space:nowrap;height:24px;line-height:24px !important;padding:0 10px;text-decoration:none;color:#69717D;border-radius:2px;}*/
+/*.select a:hover{color:#f60;background-color:#f3edc2}*/
+/*.select .selected a{color:#fff;background-color:#5dabe5}*/
+/*.select b{display:inline-block;white-space:nowrap;height:24px;line-height:24px !important;padding:0 10px;text-decoration:none;color:#69717D;border-radius:2px;}*/
+/*.select b:hover{color:#f60;background-color:#f3edc2}*/
+/*.select .selected b{color:#fff;background-color:#F95959}*/
+/*.select-result dt{!*font-weight:bold*!}*/
+/*.select-no{color:#999}*/
+/*.select .select-result a{padding-right:20px;background:#5dabe5 url("images/close.gif") right 9px no-repeat}*/
+/*.select .select-result a:hover{background-position:right -15px}*/
+/*.select .select-result b{padding-right:20px;background:#F95959 url("images/close.gif") right 9px no-repeat}*/
+/*.select .select-result b:hover{background-position:right -15px}*/
+
+/*.echarts-title {*/
+	/*padding-left:10px;*/
+	/*font-size:20px;*/
+	/*height:25px;*/
+	/*line-height:25px;*/
+	/*overflow:hidden;*/
+	/*font-weight:700;*/
+	/*border-left:5px solid #b9b9b9;*/
+/*}*/
+
+/*!* 统计图表页面统计总数样式 *!*/
+/*.storey_customer_view{overflow:hidden;text-align:left;margin-bottom:20px}*/
+/*.scvl{float:left}*/
+/*.scvr{float:right}*/
+/*.scvl_top{color:#717e9a;margin-top:15px;height:30px;line-height:30px;padding-left:20px;}*/
+/*.scvl_number{height:40px;line-height:40px;font-size:30px;overflow:hidden;color:#108ec8;text-align: center;}*/
+/*.scvl_price{height:40px;line-height:40px;font-size:20px;overflow:hidden;color:red;text-align: center;}*/
+/*.storey_customer_viewBox{display:inline-block;width:100%;background:#fff;border:1px solid #dbdee0;height:100px}*/
+
+/*!* bootstrap tooltip 修改默认样式*!*/
+/*.tooltip {width:200px !important;}*/
+/*!*.tooltip-arrow {backgroud-color:#FFFFFF !important;}*!*/
+/*!*.tooltip-inner {background-color:#67B2D9 !important;float:left !important;}*!*/
+.error{
+    color:red;
+}
